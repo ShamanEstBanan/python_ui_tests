@@ -1,4 +1,5 @@
 /.idea
-main_venv
+.main_venv/
 .pytest_cache
 /main_venv/
+main_venv
