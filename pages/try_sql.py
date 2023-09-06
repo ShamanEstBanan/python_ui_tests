@@ -16,6 +16,10 @@ class TrySql(BasePage):
     def open(self):
         self.open_page('%s%s' % (URL, self.URL_PATH))
 
+    def input_sql_request(self, query: str):
+        return self.execute_script(f"window.editor.setValue('{query}')")
 
-
+    @property
+    def insert_result(self):
+        return ""
 

@@ -60,3 +60,6 @@ class BasePage(object):
             element = self.find_element(element)
 
         return element.is_displayed() if element else False
+
+    def execute_script(self, script: str):
+        return self.browser.execute_script(script)
