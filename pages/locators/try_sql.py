@@ -55,9 +55,16 @@ class TrySqlLocators(object):
         )
 
     @property
-    def insert_result_success(self):
+    def text_result_success(self):
         return Locator(
             "//*[@id='resultSQL']//div[contains(text(), 'You have made changes to the database. Rows affected: 1' )]",
+            By.XPATH
+        )
+
+    @property
+    def text_result_no_result(self):
+        return Locator(
+            "//*[@id='resultSQL']//div[contains(text(), 'No result.' )]",
             By.XPATH
         )
 

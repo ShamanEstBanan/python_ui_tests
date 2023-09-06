@@ -47,11 +47,10 @@ class TestTrySQL(object):
         )
         sql_page.input_sql_request(query)
         sql_page.click(sql_page.locators.button_run)
-        sql_page.is_displayed(sql_page.locators.insert_result_success)
+        assert sql_page.is_displayed(sql_page.locators.text_result_success)
 
         query = "SELECT * FROM Customers WHERE CustomerID = \"777\" ;"
         sql_page.input_sql_request(query)
-
         sql_page.click(sql_page.locators.button_run)
 
         address = sql_page.find_element(
@@ -73,7 +72,7 @@ class TestTrySQL(object):
 
         sql_page.input_sql_request(query)
         sql_page.click(sql_page.locators.button_run)
-        sql_page.is_displayed(sql_page.locators.insert_result_success)
+        sql_page.is_displayed(sql_page.locators.text_result_success)
 
         query = "SELECT * FROM Customers WHERE CustomerID = \"66\" ;"
         sql_page.input_sql_request(query)
@@ -86,9 +85,21 @@ class TestTrySQL(object):
 
         assert address.text == expected_address, f"Expected address {expected_address}, but actual {address.text}"
 
-    def test_delete_customer(self, browser):
+    def test_delete_category(self, browser):
         sql_page = TrySql(browser)
 
         sql_page.open()
 
+        query = (
+            "DELETE FROM Categories WHERE CategoryID = \"1\";"
+        )
+        sql_page.input_sql_request(query)
         sql_page.click(sql_page.locators.button_run)
+        assert sql_page.is_displayed(sql_page.locators.text_result_success)
+
+        query = (
+            "SELECT * FROM Categories WHERE CategoryID = \"1\";"
+        )
+        sql_page.input_sql_request(query)
+        sql_page.click(sql_page.locators.button_run)
+        assert sql_page.is_displayed(sql_page.locators.text_result_no_result)
