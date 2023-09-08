@@ -5,4 +5,3 @@ requests==2.31.0
 selenium==4.12.0
 sortedcontainers==2.4.0
 tomli==2.0.1
-chromedriver-py==115.0.5790.170
